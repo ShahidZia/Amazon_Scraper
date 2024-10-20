@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product List with Search and Filters</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .btn-buy {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .btn-buy:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Amazon Brand Products</h1>
+
+        <!-- Product Table -->
+        <table id="product-table" class="display">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>ASIN</th>
+                    <th>SKU</th>
+                    <th>Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in product_list %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.asin }}</td>
+                    <td>{{ product.sku }}</td>
+                    <td><img src="{{ product.image }}" alt="Product Image"></td>
+                </tr>
+                {% endfor %}
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- DataTables jQuery Plugin -->
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Initialize DataTable
+            $('#product-table').DataTable({
+                "paging": true,
+                "searching": true,
+                "ordering": true,
+                "order": [[ 0, "asc" ]], // Default ordering by Product Name
+                "columnDefs": [
+                    { "orderable": false, "targets": 3 } // Disable ordering for the image column
+                ]
+            });
+        });
+    </script>
+
+</body>
+</html>
