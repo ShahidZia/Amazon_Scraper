@@ -2,7 +2,7 @@
 
 # Steps to configure and run this project
 
-1. Clone repository: git clone https://github.com/shahid/lincoln.git
+1. Clone repository: git clone [https://github.com/shahid/lincoln.git](https://github.com/ShahidZia/amazon_scraper.git)
 2. Install virtualenv. `pip install virtualenv``
 3. Create virtualenv. `virtualenv env`
 4. Start your virtualenv. `.\env\scripts/activate` (windows) `source env/bin/activate` (linux)
